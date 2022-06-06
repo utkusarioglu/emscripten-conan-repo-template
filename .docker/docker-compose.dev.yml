@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  conan-repo-template:
+    image: utkusarioglu/emscripten-conan-dev-environment
+    volumes:
+      - ..:/utkusarioglu/templates/conan-repo-template
+      - ../.conan:/root/.conan

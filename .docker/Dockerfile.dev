@@ -1,0 +1,17 @@
+FROM ubuntu:22.04
+ENV DEBIAN_FRONTEND=noninteractive 
+RUN apt-get update
+RUN apt-get install \
+  software-properties-common \
+  git \
+  pip \
+  clang-14 \
+  lsb-release \
+  cmake \
+  nginx \
+  curl \
+  vim \
+  -y
+RUN ln -s /usr/bin/clang-14 /usr/local/bin/clang && \
+  ln -s /usr/bin/clang++-14 /usr/local/bin/clang++
+RUN pip install conan --quiet

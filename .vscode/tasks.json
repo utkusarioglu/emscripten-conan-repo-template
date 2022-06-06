@@ -1,0 +1,64 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Dev Wasm",
+      "type": "shell",
+      "command": "scripts/dev-wasm.sh",
+      "detail": "Build and serve through Nginx"
+    },
+    {
+      "label": "Build Wasm",
+      "type": "shell",
+      "command": "scripts/build-wasm.sh",
+      "detail": "Build the wasm binary"
+    },
+    {
+      "label": "Build Linux",
+      "type": "shell",
+      "command": "scripts/build-linux.sh",
+      "detail": "Build a linux binary"
+    },
+    {
+      "label": "Build Windows",
+      "type": "shell",
+      "command": "scripts/build-windows.sh",
+      "detail": "Build a Windows binary"
+    },
+    {
+      "label": "Run Linux",
+      "type": "shell",
+      "command": "scripts/run-linux.sh",
+      "detail": "Run linux binary"
+    },
+    {
+      "label": "Build & Run Linux",
+      "type": "shell",
+      "detail": "Build a linux binary",
+      "command": "scripts/build-n-run-linux.sh",
+      "args": ["${input:runArgs}"]
+    },
+    {
+      "label": "Start Nginx",
+      "type": "shell",
+      "command": "scripts/start-nginx.sh",
+      "detail": "Start Nginx server"
+    },
+    {
+      "label": "Stop Nginx",
+      "type": "shell",
+      "command": "scripts/stop-nginx.sh",
+      "detail": "Stop Nginx server"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "runArgs",
+      "description": "Runtime arguments",
+      "default": "arg1 arg2 arg3 arg4 arg5 arg6"
+    }
+  ]
+}

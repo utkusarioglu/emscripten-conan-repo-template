@@ -1,0 +1,24 @@
+{
+  "name": "conan-repo-template.templates.utkusarioglu.com",
+  "dockerComposeFile": [
+    "../.docker/docker-compose.dev.yml",
+    "docker-compose.yml"
+  ],
+  "service": "conan-repo-template",
+  "workspaceFolder": "/utkusarioglu/templates/conan-repo-template",
+  "settings": {
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#004299"
+    }
+  },
+  "extensions": [
+    "ms-vscode.cpptools",
+    "ms-vscode.cmake-tools",
+    "disroop.conan",
+    "FireBlackHat.conan-tools",
+    "ahmadalli.vscode-nginx-conf"
+  ],
+  "features": {
+    "github-cli": "latest"
+  }
+}

@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  conan-repo-template:
+    volumes:
+      - vscode-extensions:/root/.vscode-server/extensions
+      - vscode-extensions-insiders:/root/.vscode-server-insiders/extensions
+      - ~/.config/gh:/root/.config/gh:ro
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    ports:
+      - 80:80
+
+volumes:
+  vscode-extensions:
+  vscode-extensions-insiders:

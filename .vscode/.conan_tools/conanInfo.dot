@@ -1,0 +1,4 @@
+digraph {
+        "openssl/3.0.1" -> "zlib/1.2.11"
+        "conanfile.py (Emscripten/1.0.0)" -> "openssl/3.0.1"
+}

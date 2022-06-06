@@ -1,0 +1,5 @@
+build
+.conan
+/unused
+.vscode/workspace*
+.ignore
