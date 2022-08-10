@@ -3,3 +3,7 @@ build
 /unused
 .vscode/workspace*
 .ignore
+
+.env
+.env.*
+!.env.example
