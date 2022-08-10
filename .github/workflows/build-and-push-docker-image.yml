@@ -29,9 +29,17 @@ jobs:
         with:
           context: ..
           tags: |
-            utkusarioglu/emscripten-conan-dev-environment:latest
+            utkusarioglu/emscripten-conan-container-template:latest
+            utkusarioglu/emscripten-conan-container-template:1.0.0
           file: .docker/Dockerfile.dev
           push: ${{ github.ref == 'refs/heads/main' }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
