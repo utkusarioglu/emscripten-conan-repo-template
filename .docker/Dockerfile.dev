@@ -15,4 +15,4 @@ RUN apt-get install \
 RUN ln -s /usr/bin/clang-14 /usr/local/bin/clang && \
   ln -s /usr/bin/clang++-14 /usr/local/bin/clang++
 RUN pip install conan --quiet
-COPY .docker/create-env-example.sh /scripts/create-env-example.sh
+ADD https://gist.githubusercontent.com/utkusarioglu/2d4be44dc7707afccd540ad99ba385e6/raw/3eb6693a91b1aa5b3863d087de1d189b72eeeec8/create-env-example.sh /scripts/create-env-example.sh
