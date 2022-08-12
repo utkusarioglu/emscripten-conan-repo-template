@@ -29,8 +29,8 @@ jobs:
         with:
           context: ..
           tags: |
-            utkusarioglu/emscripten-conan-container-template:latest
-            utkusarioglu/emscripten-conan-container-template:1.0.0
+            utkusarioglu/emscripten-conan-devcontainer:latest
+            utkusarioglu/emscripten-conan-devcontainer:1.0.0
           file: .docker/Dockerfile.dev
           push: ${{ github.ref == 'refs/heads/main' }}
           cache-from: type=local,src=/tmp/.buildx-cache
