@@ -1,14 +1,19 @@
 version: "3.9"
 services:
   emscripten-conan-repo-template:
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
     volumes:
-      - vscode-extensions:/root/.vscode-server/extensions
-      - vscode-extensions-insiders:/root/.vscode-server-insiders/extensions
-      - ~/.config/gh:/root/.config/gh:ro
+      - type: volume
+        source: vscode-server-extensions
+        target: /root/.vscode-server/extensions
+      - type: volume
+        source: vscode-server-insiders-extensions
+        target: /root/.vscode-server-insiders/extensions
     command: /bin/sh -c "while sleep 1000; do :; done"
-    ports:
-      - 80:80
 
 volumes:
-  vscode-extensions:
-  vscode-extensions-insiders:
+  vscode-server-extensions:
+    name: emscripten-conan-repo-template-vscode-server-extensions
+  vscode-server-insiders-extensions:
+    name: emscripten-conan-repo-template-vscode-server-insiders-extensions
