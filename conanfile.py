@@ -4,7 +4,7 @@ class Emscripten(ConanFile):
   requires = [
     "rapidjson/cci.20211112",
   ]
-  name = "conan-repo-template"
+  name = "emscripten-conan-repo-template"
   version = "1.0.0"
   generators = "cmake"
   default_options = {

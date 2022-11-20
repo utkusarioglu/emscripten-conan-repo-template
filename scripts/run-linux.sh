@@ -1,3 +1,3 @@
 #!/bin/bash
 
-build/bin/conan-repo-template $1
+build/bin/emscripten-conan-repo-template $1

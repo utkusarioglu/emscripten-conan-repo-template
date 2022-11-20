@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  conan-repo-template:
+  emscripten-conan-repo-template:
     volumes:
       - vscode-extensions:/root/.vscode-server/extensions
       - vscode-extensions-insiders:/root/.vscode-server-insiders/extensions
