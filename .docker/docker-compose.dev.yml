@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  conan-repo-template:
+  emscripten-conan-repo-template:
     image: utkusarioglu/emscripten-conan-devcontainer:1.0.0
     volumes:
-      - ..:/utkusarioglu/templates/conan-repo-template
+      - ..:/utkusarioglu/templates/emscripten-conan-repo-template
       - ../.conan:/root/.conan

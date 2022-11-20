@@ -1,9 +1,11 @@
 {
-  "name": "conan-repo-template.templates.utkusarioglu.com",
+  "name": "emscripten-conan-repo-template.templates.utkusarioglu.com",
   "dockerComposeFile": [
     "../.docker/docker-compose.dev.yml",
     "docker-compose.yml"
   ],
+  "service": "emscripten-conan-repo-template",
+  "workspaceFolder": "/utkusarioglu/templates/emscripten-conan-repo-template",
   "customizations": {
     "vscode": {
       "extensions": [
