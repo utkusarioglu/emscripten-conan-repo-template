@@ -5,7 +5,7 @@
 
 install() {
   conan install . \
-    -if $WEB_BUILD_DIR \
+    -f $WEB_BUILD_DIR \
     -b missing
 }
 
@@ -14,4 +14,4 @@ build() {
 }
 
 install
-build
+# build

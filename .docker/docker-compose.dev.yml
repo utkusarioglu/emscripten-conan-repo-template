@@ -2,7 +2,8 @@ version: "3.9"
 
 services:
   emscripten-conan-repo-template:
-    image: utkusarioglu/emscripten-conan-devcontainer:1.0.2
+    # image: utkusarioglu/emscripten-conan-devcontainer:1.0.2
+    image: utkusarioglu/emscripten-conan-devcontainer:experiment-feat-elam-13
     volumes:
       - type: bind
         source: ..
