@@ -38,7 +38,9 @@
       "type": "shell",
       "detail": "Build a linux binary",
       "command": "scripts/build-n-run-linux.sh",
-      "args": ["${input:runArgs}"]
+      "args": [
+        "${input:runArgs}"
+      ]
     },
     {
       "label": "Start Nginx",
@@ -51,6 +53,12 @@
       "type": "shell",
       "command": "scripts/stop-nginx.sh",
       "detail": "Stop Nginx server"
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "command": "scripts/clean.sh",
+      "detail": "Clean artifacts and support files"
     }
   ],
   "inputs": [

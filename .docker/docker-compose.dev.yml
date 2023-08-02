@@ -8,6 +8,6 @@ services:
       - type: bind
         source: ..
         target: /utkusarioglu/templates/emscripten-conan-repo-template
-      - type: bind
-        source: ../.conan
-        target: /root/.conan
+      # - type: bind
+      #   source: ../.conan
+      #   target: /root/.conan
