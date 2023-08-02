@@ -11,11 +11,12 @@ class Emscripten(ConanFile):
     name = "emscripten-conan-repo-template"
     version = "1.0.0"
     build_policy = "missing"
+    settings = "os", "arch", "compiler", "build_type"
     # build_folder = "build"
 
-    source_folder = "src"
+    source_folder = "."
     package_folder = "lib"
-    generators_folder = "build"
+    # generators_folder = "build"
     # generators = "CMakeDeps", "CMakeToolchain"
 
     # def imports(self):

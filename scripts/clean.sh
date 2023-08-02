@@ -1,4 +1,4 @@
 #!/bin/sh
-. ./.config
+. ./repo.config
 
 rm -rf $WEB_BUILD_DIR

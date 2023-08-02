@@ -1,9 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include "spdlog/spdlog.h"
 
 int main(int argc, const char *argv[])
 {
-  std::cout << "main" << std::endl;
+  spdlog::warn("hi");
   return 0;
 }
