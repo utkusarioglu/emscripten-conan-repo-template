@@ -3,6 +3,6 @@ project(emscripten-conan-repo-template)
 
 find_package(spdlog REQUIRED)
 
-add_executable(${PROJECT_NAME} ../../src/main.cc)
+add_executable(${PROJECT_NAME} src/main.cc)
 
 target_link_libraries(${PROJECT_NAME} spdlog::spdlog)

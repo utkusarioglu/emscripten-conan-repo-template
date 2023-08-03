@@ -8,7 +8,7 @@ class Emscripten(ConanFile):
     build_policy = "missing"
     settings = "os", "arch", "compiler", "build_type"
 
-    # build_folder = "build"
+    build_folder = "b"
 
     # source_folder = "."
     # package_folder = "lib"
@@ -16,6 +16,7 @@ class Emscripten(ConanFile):
     # generators = "CMakeDeps", "CMakeToolchain"
 
     def layout(self):
+        self.build_folder = "b"
         self.folders.generators = "generators"
 
     def requirements(self):
@@ -29,7 +30,7 @@ class Emscripten(ConanFile):
     #     self.copy("*.js", dst="bin", src="bin")
     #     self.copy("*.wasm", dst="bin", src="bin")
 
-    def deploy(conanfile, output_folder, **kwargs):
+    # def deploy(conanfile, output_folder, **kwargs):
     
 
     def generate(self):

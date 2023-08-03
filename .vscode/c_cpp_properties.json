@@ -9,9 +9,6 @@
       "defines": [],
       "compilerPath": "/usr/local/bin/clang",
       "cStandard": "c23",
-      "browse": {
-        "databaseFilename": "${workspaceFolder}/.vscode/workspace.db"
-      },
       "configurationProvider": "ms-vscode.cmake-tools"
     }
   ],
