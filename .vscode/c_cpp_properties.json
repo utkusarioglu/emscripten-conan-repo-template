@@ -1,20 +1,19 @@
 {
-    "configurations": [
-        {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/src/**",
-                "~/.conan/data/**"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/local/bin/clang",
-            "cStandard": "c17",
-            "intelliSenseMode": "linux-clang-x64",
-            "browse": {
-                "databaseFilename": "${workspaceFolder}/.vscode/workspace.db"
-            },
-            "configurationProvider": "ms-vscode.cmake-tools"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/src/**",
+        "~/.conan2/**"
+      ],
+      "defines": [],
+      "compilerPath": "/usr/local/bin/clang",
+      "cStandard": "c23",
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/workspace.db"
+      },
+      "configurationProvider": "ms-vscode.cmake-tools"
+    }
+  ],
+  "version": 4
 }
