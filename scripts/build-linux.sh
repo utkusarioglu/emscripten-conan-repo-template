@@ -6,14 +6,17 @@
 install() {
   conan install . \
     -pr:h $(pwd)/profiles/host.profile \
-    -pr:b $(pwd)/profiles/build.profile 
+    -pr:b $(pwd)/profiles/build.profile \
+    --lockfile-out conan.lock \
+    --lockfile conan.lock 
 }
 
 build() {
-  # cp CMakeLists.txt $LINUX_BUILD_DIR/CMakeLists.txt
   conan build . \
     -pr:h $(pwd)/profiles/host.profile \
-    -pr:b $(pwd)/profiles/build.profile 
+    -pr:b $(pwd)/profiles/build.profile \
+    --lockfile-out conan.lock \
+    --lockfile conan.lock 
 }
 
 install

@@ -1,5 +1,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps
+from os import path
+from shutil import copy2
 
 class Emscripten(ConanFile):  
     name = "emscripten-conan-repo-template"
@@ -29,10 +31,9 @@ class Emscripten(ConanFile):
     #     self.copy("*.html", dst="bin", src="bin")
     #     self.copy("*.js", dst="bin", src="bin")
     #     self.copy("*.wasm", dst="bin", src="bin")
-
-    def deploy(conanfile, output_folder, **kwargs):
-        print(f"output folder: {output_folder}")
     
+    def test(self):
+        print("Do this later, it requires knowing how to package code")
 
     def generate(self):
         tc = CMakeToolchain(self)

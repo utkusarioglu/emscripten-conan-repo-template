@@ -6,7 +6,7 @@
 
 int main(int argc, const char *argv[])
 {
-  spdlog::warn("hiya");
+  spdlog::warn("hiya2");
   return 0;
 }
 
