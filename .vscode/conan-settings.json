@@ -1,0 +1,14 @@
+{
+    "profiles": [
+        {
+            "name": "emscripten-conan-repo-template-Profiles found in the cache:",
+            "conanFile": "${workspaceFolder}/conanfile.py",
+            "profile": "Profiles found in the cache:",
+            "installArg": "",
+            "buildArg": "",
+            "createUser": "disroop",
+            "createChannel": "development",
+            "createArg": ""
+        }
+    ]
+}
