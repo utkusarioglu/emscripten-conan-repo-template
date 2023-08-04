@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. scripts/build-wasm.sh
+. scripts/build.wasm.sh
 
 if [ -e /var/run/nginx.pid ]; then 
   echo "Reloading nginx..."

@@ -1,5 +1,5 @@
 from conan import ConanFile
-from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps
+from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
 from os import path
 from shutil import copy2
 
@@ -10,7 +10,8 @@ class Emscripten(ConanFile):
     build_policy = "missing"
     settings = "os", "arch", "compiler", "build_type"
 
-    build_folder = "build"
+    # build_folder = "build"
+    # package_folder = "p"
 
     # source_folder = "."
     # package_folder = "lib"
@@ -18,8 +19,7 @@ class Emscripten(ConanFile):
     # generators = "CMakeDeps", "CMakeToolchain"
 
     def layout(self):
-        self.folders.build = "b"
-        self.folders.generators = "generators"
+        cmake_layout(self)
 
     def requirements(self):
         self.requires("spdlog/1.12.0")
@@ -42,6 +42,8 @@ class Emscripten(ConanFile):
         deps.generate()
 
     def build(self):
+        print("-- This is happening before build")
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
+        print("-- This is happening after build")

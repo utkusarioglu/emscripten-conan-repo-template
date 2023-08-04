@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Building..."
-. scripts/build-linux.sh
+. scripts/build.linux.sh
 
 echo "\n\n\nRunning..."
-. scripts/run-linux.sh $1
+. scripts/run.linux.sh $@

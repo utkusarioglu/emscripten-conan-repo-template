@@ -4,6 +4,6 @@
         "conan": {}
     },
     "include": [
-        "/utkusarioglu/templates/emscripten-conan-repo-template/generators/CMakePresets.json"
+        "/utkusarioglu/templates/emscripten-conan-repo-template/build/Release/generators/CMakePresets.json"
     ]
 }
