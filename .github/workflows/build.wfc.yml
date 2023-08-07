@@ -45,8 +45,10 @@ jobs:
       
       - name: Install & Build Wasm
         run: |
+          docker container ls
           docker exec -t emscripten-conan-repo-template \
             scripts/build.wasm.sh
+
       - name: Save Bin
         uses: actions/upload-artifact@v3
         with:
