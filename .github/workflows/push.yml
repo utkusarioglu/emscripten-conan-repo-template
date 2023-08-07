@@ -16,5 +16,5 @@ jobs:
   build:
     uses: ./.github/workflows/build.wfc.yml
     with:
-      linuxEnabled: false
+      linuxEnabled: true
       wasmEnabled: true
