@@ -20,40 +20,48 @@ jobs:
   build-and-push:
     name: build-and-push
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     images:
-    #       - enabled: true
-    #         username: conan
-    #         containerName: emscripten-conan-devcontainer
+    strategy:
+      matrix:
+        images:
+          - enabled: false
+            target: wasm
+          - enabled: true
+            target: linux
     #     common:
     #       - cacheToDest: /tmp/.buildx-cache-new
     #         cacheFromSrc: /tmp/.buildx-cache
 
     steps:
       - name: Checkout code
+        id: ${{ matrix.images.enabled }}
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
       
       - name: Adjust permissions
-        run: sudo chown -R 1000:1000 .
+        id: ${{ matrix.images.enabled }}
+        run: |
+          sudo chown -R 1000:1000 .
+          ls -al
 
       - name: Run devcontainer
+        id: ${{ matrix.images.enabled }}
         run: |
           docker compose \
             -f .docker/docker-compose.ci.yml \
             -f .docker/docker-compose.dev.yml \
             up -d
       
-      - name: Install & Build Wasm
+      - name: Install & Build ${{ matrix.images.target }}
+        id: ${{ matrix.images.enabled }}
         run: |
           docker container ls
           docker exec -t emscripten-conan-repo-template \
-            scripts/build.wasm.sh
+            scripts/build.${{ matrix.images.target }}.sh
 
       - name: Save Bin
+        id: ${{ matrix.images.enabled }}
         uses: actions/upload-artifact@v3
         with:
-          name: wasm-bin
+          name: ${{ matrix.images.target }}-bin
           path: build/Release/bin
