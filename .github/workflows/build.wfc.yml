@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 2
       
       - name: Adjust permissions
-        run: sudo chown -R conan:conan *
+        run: sudo chown -R 1000:1000 .
 
       - name: Run devcontainer
         run: |
