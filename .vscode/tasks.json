@@ -4,12 +4,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Dev Wasm",
-      "type": "shell",
-      "command": "scripts/dev.wasm.sh",
-      "detail": "Build and serve through Nginx"
-    },
-    {
       "label": "Build Wasm",
       "type": "shell",
       "command": "scripts/build.wasm.sh",
@@ -31,13 +25,7 @@
       "label": "Run Linux",
       "type": "shell",
       "command": "scripts/run.linux.sh",
-      "detail": "Run linux binary"
-    },
-    {
-      "label": "Build & Run Linux",
-      "type": "shell",
-      "detail": "Build a linux binary",
-      "command": "scripts/build-and-run.linux.sh",
+      "detail": "Run linux binary",
       "args": [
         "${input:runArgs}"
       ]
@@ -46,6 +34,21 @@
       "label": "Run Wasm",
       "type": "shell",
       "command": "scripts/run.wasm.sh",
+      "detail": "Start python http server"
+    },
+    {
+      "label": "...Run Linux",
+      "type": "shell",
+      "detail": "Build and run a linux exec",
+      "command": "scripts/run.linux.sh && scripts/run.linux.sh",
+      "args": [
+        "${input:runArgs}"
+      ]
+    },
+    {
+      "label": "...Run Wasm",
+      "type": "shell",
+      "command": "scripts/build.wasm.sh && scripts/run.wasm.sh",
       "detail": "Start python http server"
     },
     {
