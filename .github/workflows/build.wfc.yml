@@ -1,31 +1,26 @@
 name: build
 
 on:
-  push:
-    tags:
-      - "**.**.**"
-      - feature/**/**
-      - experiment/**/**/**
-    paths:
-      - src/**
-      - .github/workflows/build-and-push.yml
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      wasmEnabled: 
+        default: true
+        type: boolean
+      linuxEnabled: 
+        default: true
+        type: boolean
 
-# env:
-#   # CONTAINER_NAME: emscripten-conan-devcontainer
-#   CACHE_TO_DEST: /tmp/.buildx-cache-new
-#   CACHE_FROM_SRC: /tmp/.buildx-cache
 
 jobs:
-  build-and-push:
+  build-workflow:
     name: build-and-push
     runs-on: ubuntu-latest
     strategy:
       matrix:
         images:
-          - enabled: false
+          - enabled: ${{ inputs.wasmEnabled }}
             target: wasm
-          - enabled: true
+          - enabled: ${{ inputs.linuxEnabled }}
             target: linux
     #     common:
     #       - cacheToDest: /tmp/.buildx-cache-new
