@@ -37,8 +37,7 @@ jobs:
           fetch-depth: 2
       
       - name: Adjust permissions
-        run: |
-          chmod -R 1000:1000 *
+        run: chown -R 1000:1000 *
 
       - name: Run devcontainer
         run: |
