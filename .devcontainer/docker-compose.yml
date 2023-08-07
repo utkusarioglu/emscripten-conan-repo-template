@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   emscripten-conan-repo-template:
+    container_name: emscripten-conan-repo-template
     environment:
       GH_TOKEN: ${GH_TOKEN}
     volumes:

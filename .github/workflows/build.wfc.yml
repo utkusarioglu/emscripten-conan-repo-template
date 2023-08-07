@@ -1,0 +1,50 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "**.**.**"
+      - feature/**/**
+      - experiment/**/**/**
+    paths:
+      - src/**
+      - .github/workflows/build-and-push.yml
+  workflow_dispatch:
+
+# env:
+#   # CONTAINER_NAME: emscripten-conan-devcontainer
+#   CACHE_TO_DEST: /tmp/.buildx-cache-new
+#   CACHE_FROM_SRC: /tmp/.buildx-cache
+
+jobs:
+  build-and-push:
+    name: build-and-push
+    runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     images:
+    #       - enabled: true
+    #         username: conan
+    #         containerName: emscripten-conan-devcontainer
+    #     common:
+    #       - cacheToDest: /tmp/.buildx-cache-new
+    #         cacheFromSrc: /tmp/.buildx-cache
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Run devcontainer
+        run: |
+          docker compose -f .docker/docker-compose.dev.yml up -d
+      - name: Install & Build Wasm
+        run: |
+          docker exec -t emscripten-conan-repo-template \
+            scripts/build.wasm.sh
+      - name: Save Bin
+        uses: actions/upload-artifact@v3
+        with:
+          name: wasm-bin
+          path: build/Release/bin
