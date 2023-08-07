@@ -3,6 +3,10 @@
 . ./repo.config
 . scripts/clean.sh
 
+ls -al
+id -u
+id -g
+
 install() {
   target_profile=$1
   
