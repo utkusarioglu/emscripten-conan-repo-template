@@ -33,19 +33,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        id: ${{ matrix.images.enabled }} == 'true'
+        if: ${{ matrix.images.enabled }}
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
       
       - name: Adjust permissions
-        id: ${{ matrix.images.enabled }} == 'true'
+        if: ${{ matrix.images.enabled }}
         run: |
           sudo chown -R 1000:1000 .
           ls -al
 
       - name: Run devcontainer
-        id: ${{ matrix.images.enabled }} == 'true'
+        if: ${{ matrix.images.enabled }}
         run: |
           docker compose \
             -f .docker/docker-compose.ci.yml \
@@ -53,14 +53,14 @@ jobs:
             up -d
       
       - name: Install & Build ${{ matrix.images.target }}
-        id: ${{ matrix.images.enabled }} == 'true'
+        if: ${{ matrix.images.enabled }}
         run: |
           docker container ls
           docker exec -t emscripten-conan-repo-template \
             scripts/build.${{ matrix.images.target }}.sh
 
       - name: Save Bin
-        id: ${{ matrix.images.enabled }} == 'true'
+        if: ${{ matrix.images.enabled }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.images.target }}-bin
