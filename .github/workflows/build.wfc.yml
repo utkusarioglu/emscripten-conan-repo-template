@@ -35,6 +35,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
+      
+      - name: Adjust permissions
+        run: |
+          chmod -R 1000:1000 *
 
       - name: Run devcontainer
         run: |
