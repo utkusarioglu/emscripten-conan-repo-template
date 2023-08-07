@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    uses: .github/workflows/build.wfc.yml
+    uses: ./.github/workflows/build.wfc.yml
     with:
       linuxEnabled: false
       wasmEnabled: true

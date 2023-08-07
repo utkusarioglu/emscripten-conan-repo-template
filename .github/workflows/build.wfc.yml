@@ -22,9 +22,6 @@ jobs:
             target: wasm
           - enabled: ${{ inputs.linuxEnabled }}
             target: linux
-    #     common:
-    #       - cacheToDest: /tmp/.buildx-cache-new
-    #         cacheFromSrc: /tmp/.buildx-cache
 
     steps:
       - name: Checkout code
