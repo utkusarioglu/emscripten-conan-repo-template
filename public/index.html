@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <style>
       html,
@@ -8,14 +9,16 @@
         margin: 0;
         padding: 0;
       }
+
       #canvas {
         width: 100%;
         height: 100%;
       }
+
     </style>
   </head>
   <script type="module">
-    import module from "./emscripten-conan-repo-template.wasm.js";
+    import module from "/emscripten-conan-repo-template.js";
 
     /**
      * Instantiates and waits for the wasm instance.
@@ -53,7 +56,8 @@
       const arg = "params";
       const errorMessage = `Please set query param "${arg}" for the url`;
       const paramsRaw = new URLSearchParams(window.location.search).get(arg);
-      if (!paramsRaw) {
+      if (!paramsRaw)
+      {
         return [1];
         // setTarget(/* html */ `<h1>${errorMessage}</h1>`);
         // throw new Error(errorMessage);
@@ -62,7 +66,8 @@
     }
 
     const doThings = (val) => {
-      if (val > 30) {
+      if (val > 30)
+      {
         throw new Error(`${val} is too big`);
       }
       const fib = instance._fibonacci(val);
@@ -89,15 +94,19 @@
       console.log("buffer", buf, bufLength);
       const ptr = instance._doJsonThings(bufLength, buf);
       let parsed = "";
-      try {
+      try
+      {
         let chars = "";
-        for (let p = ptr; instance.HEAP8[p]; p++) {
+        for (let p = ptr; instance.HEAP8[p]; p++)
+        {
           chars += String.fromCharCode(instance.HEAP8[p]);
         }
         parsed = JSON.parse(chars);
-      } catch (e) {
+      } catch (e)
+      {
         console.log("String conversion failed\n", e);
-      } finally {
+      } finally
+      {
         instance._free(buf);
       }
       return parsed;
@@ -111,9 +120,11 @@
     }
     main();
   </script>
+
   <body>
     <!-- <input id="input"></input>
     <div id="root"></div> -->
     <canvas id="canvas"></canvas>
   </body>
+
 </html>

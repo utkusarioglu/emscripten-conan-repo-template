@@ -43,16 +43,10 @@
       ]
     },
     {
-      "label": "Start Nginx",
+      "label": "Run Wasm",
       "type": "shell",
-      "command": "scripts/start.nginx.sh",
-      "detail": "Start Nginx server"
-    },
-    {
-      "label": "Stop Nginx",
-      "type": "shell",
-      "command": "scripts/stop.nginx.sh",
-      "detail": "Stop Nginx server"
+      "command": "scripts/run.wasm.sh",
+      "detail": "Start python http server"
     },
     {
       "label": "Clean",
