@@ -1,3 +1,3 @@
 #!/bin/bash
 
-build/Release/emscripten-conan-repo-template $@
+build/Release/bin/bin $@
