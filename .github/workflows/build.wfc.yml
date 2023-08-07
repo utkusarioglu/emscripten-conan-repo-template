@@ -39,9 +39,9 @@ jobs:
       - name: Run devcontainer
         run: |
           docker compose \
-            -f .docker/docker-compose.dev.yml up \
-            -f .docker/docker-compose.ci.yml up \
-            -d
+            -f .docker/docker-compose.dev.yml \
+            -f .docker/docker-compose.ci.yml \
+            up -d
       
       - name: Install & Build Wasm
         run: |
