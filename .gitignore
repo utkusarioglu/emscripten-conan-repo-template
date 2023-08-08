@@ -9,4 +9,4 @@ build
 !.env.example
 
 generators
-/CMakeUserPresets.json
+CMakeUserPresets.json
