@@ -1,4 +1,5 @@
 #!/bin/sh
 . ./repo.config
+. scripts/common.sh
 
-rm -rf build
+clean

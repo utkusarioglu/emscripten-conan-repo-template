@@ -23,10 +23,8 @@ class Emscripten(ConanFile):
 
     def requirements(self):
         self.requires("spdlog/1.12.0")
-    
-    def test_requirements(self):
         self.test_requires("gtest/1.8.1")
-
+    
     # def imports(self):
     #     self.copy("*.html", dst="bin", src="bin")
     #     self.copy("*.js", dst="bin", src="bin")
