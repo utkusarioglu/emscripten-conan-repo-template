@@ -8,6 +8,7 @@ install() {
   fi
 
   conan install . \
+    -b 'missing' \
     -pr:b $(pwd)/profiles/host.profile \
     -pr:h $(pwd)/profiles/$target_profile.profile \
     --lockfile-out conan.lock \

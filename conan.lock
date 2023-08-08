@@ -2,6 +2,7 @@
     "version": "0.5",
     "requires": [
         "spdlog/1.12.0#c5fc262786548cbac34e6c38e16309a9%1688915175.09",
+        "gtest/1.8.1#c8a230fc18e7b5103adc986ccd1f6ba6%1689348346.561",
         "fmt/10.0.0#dd5e3eb81b512a1bb34a5aab88a07e82%1684225718.04"
     ],
     "build_requires": [
