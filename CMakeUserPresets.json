@@ -1,9 +1,0 @@
-{
-    "version": 4,
-    "vendor": {
-        "conan": {}
-    },
-    "include": [
-        "/utkusarioglu/templates/emscripten-conan-repo-template/build/Release/generators/CMakePresets.json"
-    ]
-}
