@@ -12,7 +12,7 @@
     {
       "label": "Build Linux",
       "type": "shell",
-      "command": "scripts/build.linux.sh",
+      "command": "scripts/build.linux.sh ${input:buildType}",
       "detail": "Build a linux binary"
     },
     {
@@ -64,6 +64,16 @@
       "id": "runArgs",
       "description": "Runtime arguments",
       "default": "arg1 arg2 arg3 arg4 arg5 arg6"
+    },
+    {
+      "type": "pickString",
+      "id": "buildType",
+      "description": "Desired build type",
+      "default": "",
+      "options": [
+        "Release",
+        "Debug"
+      ]
     }
   ]
 }

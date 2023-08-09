@@ -1,6 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
-from os import getcwd, mkdir
+from os import getcwd, makedirs
 from shutil import copy2
 
 class Emscripten(ConanFile):  
@@ -60,13 +60,13 @@ class Emscripten(ConanFile):
         match self.settings.os:
             case "Emscripten":
                 print("Creating bin for Emscripten…")
-                mkdir("bin")
+                makedirs("bin", exist_ok=True)
                 public_dir = f"{base_folder}/public"
                 copy2(f"{release_dir}/{self.name}.js", f"{release_dir}/bin/wasm.js")
                 copy2(f"{public_dir}/index.html", f"{release_dir}/bin/index.html")
             case "Linux":
                 print("Creating bin for Linux…")
-                mkdir("bin")
+                makedirs("bin", exist_ok=True)
                 copy2(f"{release_dir}/{self.name}", f"{release_dir}/bin/bin")
 
             case _:

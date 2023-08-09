@@ -1,16 +1,23 @@
 
 install() {
   target_profile=$1
+  build_type=$2
+
+  build_type=${build_type:-'Release'}
+  required_params='target_profile'
   
-  if [ -z "$target_profile" ]; then
-    echo "Error: Target profile needs to be the first param"
-    exit 1
-  fi
+  for required_param in $required_params; do
+    if [ -z "${!required_param}" ]; then
+      echo "Error: ${required_param} needs to be set."
+      exit 1
+    fi
+  done
 
   conan install . \
     -b 'missing' \
     -pr:b $(pwd)/profiles/build.profile \
     -pr:h $(pwd)/profiles/$target_profile.profile \
+    --settings="build_type=$build_type" \
     --lockfile-out conan.lock \
     --lockfile conan.lock \
     --lockfile-partial
@@ -18,15 +25,22 @@ install() {
 
 build() {
   target_profile=$1
+  build_type=$2
+
+  build_type=${build_type:-'Release'}
+  required_params='target_profile'
   
-  if [ -z "$target_profile" ]; then
-    echo "Error: Target profile needs to be the first param"
-    exit 1
-  fi
+  for required_param in $required_params; do
+    if [ -z "${!required_param}" ]; then
+      echo "Error: ${required_param} needs to be set."
+      exit 1
+    fi
+  done
 
   conan build . \
     -pr:b $(pwd)/profiles/build.profile \
     -pr:h $(pwd)/profiles/$target_profile.profile \
+    --settings="build_type=$build_type" \
     --lockfile-out conan.lock \
     --lockfile conan.lock
 }

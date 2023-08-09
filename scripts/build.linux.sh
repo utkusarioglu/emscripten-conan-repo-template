@@ -1,8 +1,8 @@
-#!/bin/sh
-.
-. ./repo.config
-. scripts/common.sh
+#!/bin/bash
+
+source ./repo.config
+source scripts/common.sh
 
 clean
-install 'linux'
-build 'linux'
+install 'linux' $@
+build 'linux' $@
