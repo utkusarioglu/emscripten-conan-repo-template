@@ -62,7 +62,14 @@ create() {
 
 
 clean() {
-  rm -rf build
+  build_type=$1
+
+  if [ -z "$build_type" ]; then
+    echo "Error: build type param is required"
+    exit 1
+  fi
+
+  rm -rf "build/$build_type"
 }
 
 test() {

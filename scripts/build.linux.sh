@@ -3,6 +3,6 @@
 source ./repo.config
 source scripts/common.sh
 
-clean
+clean $@
 install 'linux' $@
 build 'linux' $@

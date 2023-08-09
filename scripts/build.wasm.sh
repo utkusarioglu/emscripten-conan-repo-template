@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-. ./repo.config
-. scripts/common.sh
+source ./repo.config
+source scripts/common.sh
 
-clean
-install 'wasm'
-build 'wasm'
+clean $@
+install 'wasm' $@
+build 'wasm' $@

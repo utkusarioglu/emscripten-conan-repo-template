@@ -1,5 +1,6 @@
-#!/bin/sh
-. ./repo.config
-. scripts/common.sh
+#!/bin/bash
 
-clean
+source ./repo.config
+source scripts/common.sh
+
+clean $@
