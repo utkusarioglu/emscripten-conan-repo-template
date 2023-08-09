@@ -23,8 +23,10 @@ jobs:
         images:
           - enabled: ${{ inputs.wasmEnabled }}
             target: wasm
+            buildPath: emscripten
           - enabled: ${{ inputs.linuxEnabled }}
             target: linux
+            buildPath: linux
 
     steps:
       - name: Checkout code
@@ -67,4 +69,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.images.target }}-${{ steps.variables.outputs.build_type }}-bin
-          path: build/${{ matrix.images.target }}/${{ steps.variables.outputs.build_type }}/bin
+          path: build/${{ matrix.images.buildPath }}/${{ steps.variables.outputs.build_type }}/bin
