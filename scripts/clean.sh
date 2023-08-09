@@ -1,6 +1,6 @@
 #!/bin/bash
 
 source ./repo.config
-source scripts/common.sh
+source scripts/utils.sh
 
 clean $@

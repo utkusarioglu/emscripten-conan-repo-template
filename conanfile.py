@@ -12,6 +12,15 @@ class Emscripten(ConanFile):
 
     exports = "CMakeLists.txt",
 
+    # default_options = {
+    #     "spdlog/1.12.0": {
+    #         shared: True
+    #     }
+    # }
+
+    def configure(self):
+        self.options["spdlog"].shared = True
+
     # build_folder = "build"
     # package_folder = "p"
 
@@ -44,6 +53,9 @@ class Emscripten(ConanFile):
     def package(self):
         cmake = CMake(self)
         cmake.install()
+        self.copy(pattern="*.dll", dst="bin", keep_path=False)
+        self.copy(pattern="*.dylib", dst="lib", keep_path=False)
+        self.copy(pattern="*.so*", dst="lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = [self.name]

@@ -1,6 +1,6 @@
 #!/bin/bash
 
 . ./repo.config
-. scripts/common.sh
+. scripts/utils.sh
 
 test 'linux'

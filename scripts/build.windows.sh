@@ -1,7 +1,7 @@
 #!/bin/sh
 
 . ./repo.config
-. scripts/common.sh
+. scripts/utils.sh
 
 clean
 install 'windows'
