@@ -54,10 +54,17 @@ jobs:
           docker exec -t emscripten-conan-repo-template \
             scripts/build.${{ matrix.images.target }}.sh \
             ${{ inputs.buildType }}
+      
+      - name: Variables
+        id: variables
+        run: |
+          build_type="${{ inputs.buildType }}"
+          build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
+          echo "build_type=$build_type" >> $GITHUB_OUTPUT
 
       - name: Save Bin
         if: ${{ matrix.images.enabled }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.images.target }}-${{ inputs.buildType }}-bin
-          path: build/${{ inputs.buildType }}/bin
+          name: ${{ matrix.images.target }}-${{ steps.variables.outputs.build_type }}-bin
+          path: build/${{ matrix.images.target }}/${{ steps.variables.outputs.build_type }}/bin

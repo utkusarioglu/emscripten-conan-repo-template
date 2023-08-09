@@ -12,25 +12,21 @@ class Emscripten(ConanFile):
 
     exports = "CMakeLists.txt",
 
-    # default_options = {
-    #     "spdlog/1.12.0": {
-    #         shared: True
-    #     }
-    # }
-
-    def configure(self):
-        self.options["spdlog"].shared = True
-
-    # build_folder = "build"
-    # package_folder = "p"
-
-    # source_folder = "."
-    # package_folder = "lib"
-    # generators_folder = "build"
-    # generators = "CMakeDeps", "CMakeToolchain"
+    # def configure(self):
+    #     self.options["spdlog"].shared = True
 
     def layout(self):
-        cmake_layout(self)
+        # cmake_layout(self)
+        build_type = str(self.settings.build_type).lower()
+        os = str(self.settings.os).lower()
+
+        self.folders.source = "."
+        self.folders.build = f"build/{os}/{build_type}"
+        self.folders.generators = f"build/{os}/{build_type}/generators"
+        self.cpp.source.includeDirs = ["include"]
+        self.cpp.build.libdirs = "."
+        self.cpp.build.bindirs = "."
+
 
     def requirements(self):
         self.requires("spdlog/1.12.0")
@@ -53,9 +49,9 @@ class Emscripten(ConanFile):
     def package(self):
         cmake = CMake(self)
         cmake.install()
-        self.copy(pattern="*.dll", dst="bin", keep_path=False)
-        self.copy(pattern="*.dylib", dst="lib", keep_path=False)
-        self.copy(pattern="*.so*", dst="lib", keep_path=False)
+        # self.copy(pattern="*.dll", dst="bin", keep_path=False)
+        # self.copy(pattern="*.dylib", dst="lib", keep_path=False)
+        # self.copy(pattern="*.so*", dst="lib", keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = [self.name]
@@ -69,7 +65,9 @@ class Emscripten(ConanFile):
     def _after_build(self):
         release_dir = getcwd()
         base_folder = self.folders._base_source
-        match self.settings.os:
+        os = self.settings.os
+
+        match os:
             case "Emscripten":
                 print("Creating bin for Emscripten…")
                 makedirs("bin", exist_ok=True)
@@ -79,7 +77,7 @@ class Emscripten(ConanFile):
             case "Linux":
                 print("Creating bin for Linux…")
                 makedirs("bin", exist_ok=True)
-                copy2(f"{release_dir}/{self.name}", f"{release_dir}/bin/bin")
+                copy2(f"{release_dir}/{self.name}", f"{release_dir}/bin/{self.name}")
 
             case _:
                 print("Unknown os")

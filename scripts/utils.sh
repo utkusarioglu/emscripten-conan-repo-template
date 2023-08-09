@@ -69,14 +69,21 @@ create() {
 
 
 clean() {
-  build_type=$1
+  os=$1
+  build_type=$2
+  build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
 
-  if [ -z "$build_type" ]; then
-    echo "Error: build type param is required"
-    exit 1
-  fi
+  required_params='os build_type'
+  
+  for required_param in $required_params; do
+    if [ -z "${!required_param}" ]; then
+      echo "Error: ${required_param} needs to be set."
+      exit 1
+    fi
+  done
 
-  rm -rf "build/$build_type"
+  echo "Cleaning '$os/$build_type'…"
+  rm -rf "build/$os/$build_type"
 }
 
 test() {
