@@ -2,6 +2,7 @@
 #define MAIN
 
 #include <iostream>
+#include "./main.hh"
 #include "spdlog/spdlog.h"
 
 int main(int argc, const char *argv[])

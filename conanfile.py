@@ -10,6 +10,8 @@ class Emscripten(ConanFile):
     build_policy = "missing"
     settings = "os", "arch", "compiler", "build_type"
 
+    exports = "CMakeLists.txt",
+
     # build_folder = "build"
     # package_folder = "p"
 
@@ -30,14 +32,21 @@ class Emscripten(ConanFile):
     #     self.copy("*.js", dst="bin", src="bin")
     #     self.copy("*.wasm", dst="bin", src="bin")
     
-    def test(self):
-        print("Do this later, it requires knowing how to package code")
+    # def test(self):
+    #     print("Do this later, it requires knowing how to package code")
 
     def generate(self):
         tc = CMakeToolchain(self)
         tc.generate()
         deps = CMakeDeps(self)
         deps.generate()
+
+    def package(self):
+        cmake = CMake(self)
+        cmake.install()
+
+    def package_info(self):
+        self.cpp_info.libs = [self.name]
 
     def build(self):
         cmake = CMake(self)
@@ -47,11 +56,12 @@ class Emscripten(ConanFile):
 
     def _after_build(self):
         release_dir = getcwd()
+        base_folder = self.folders._base_source
         match self.settings.os:
             case "Emscripten":
                 print("Creating bin for Emscripten…")
                 mkdir("bin")
-                public_dir = f"{self.folders._base_source}/public"
+                public_dir = f"{base_folder}/public"
                 copy2(f"{release_dir}/{self.name}.js", f"{release_dir}/bin/wasm.js")
                 copy2(f"{public_dir}/index.html", f"{release_dir}/bin/index.html")
             case "Linux":
