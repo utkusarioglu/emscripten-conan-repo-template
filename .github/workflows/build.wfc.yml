@@ -9,6 +9,9 @@ on:
       linuxEnabled: 
         default: true
         type: boolean
+      buildType:
+        required: true
+        type: string
 
 
 jobs:
@@ -49,11 +52,12 @@ jobs:
         run: |
           docker container ls
           docker exec -t emscripten-conan-repo-template \
-            scripts/build.${{ matrix.images.target }}.sh
+            scripts/build.${{ matrix.images.target }}.sh \
+            ${{ inputs.buildType }}
 
       - name: Save Bin
         if: ${{ matrix.images.enabled }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.images.target }}-bin
-          path: build/Release/bin
+          name: ${{ matrix.images.target }}-${{ inputs.buildType }}-bin
+          path: build/${{ inputs.buildType }}/bin
