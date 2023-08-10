@@ -80,8 +80,10 @@ class Emscripten(ConanFile):
                 makedirs("bin", exist_ok=True)
                 source = f"{release_dir}/{self.name}"
                 target = f"{release_dir}/bin/{self.name}"
+                chmod(source, S_IEXEC)
                 copy2(source, target)
-                chmod(target, S_IEXEC)
+# stat.S_IRGRP − Read by group.
+# stat.S_IWGRP − Write by group.
 
             case _:
                 print("Unknown os")
