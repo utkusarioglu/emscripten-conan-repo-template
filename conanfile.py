@@ -1,7 +1,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
 from os import getcwd, makedirs, chmod
-from stat import S_IRWXG, S_IRWXU 
+from stat import S_IRWXG, S_IRWXU, S_IROTH, S_IXOTH 
 from shutil import copy2
 
 class Emscripten(ConanFile):  
@@ -81,7 +81,7 @@ class Emscripten(ConanFile):
                 source = f"{release_dir}/{self.name}"
                 target = f"{release_dir}/bin/{self.name}"
                 copy2(source, target)
-                chmod(target, S_IRWXU | S_IRWXG)
+                chmod(target, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
                 # chmod(target, S_IWGRP)
                 # chmod(target, S_IEXEC)
 
