@@ -1,7 +1,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
 from os import getcwd, makedirs, chmod
-from stat import S_IEXEC
+from stat import S_IEXEC, S_IWGRP, S_IRGRP
 from shutil import copy2
 
 class Emscripten(ConanFile):  
@@ -80,10 +80,9 @@ class Emscripten(ConanFile):
                 makedirs("bin", exist_ok=True)
                 source = f"{release_dir}/{self.name}"
                 target = f"{release_dir}/bin/{self.name}"
-                chmod(source, S_IEXEC)
                 copy2(source, target)
-# stat.S_IRGRP − Read by group.
-# stat.S_IWGRP − Write by group.
+                chmod(target, S_IWGRP)
+                chmod(target, S_IEXEC)
 
             case _:
                 print("Unknown os")
