@@ -63,6 +63,11 @@ jobs:
           build_type="${{ inputs.buildType }}"
           build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
           echo "build_type=$build_type" >> $GITHUB_OUTPUT
+      
+      - name: Ls
+        working-directory: build/${{ matrix.images.buildPath }}/${{ steps.variables.outputs.build_type }}/bin
+        run: |
+          ls -al
 
       - name: Save Bin
         if: ${{ matrix.images.enabled }}
