@@ -1,0 +1,28 @@
+name: Push
+
+on:
+  push:
+    tags:
+      - "**.**.**"
+      - feature/**/**
+      - experiment/**/**/**
+    paths:
+      - src/**
+      - .github/workflows/build.wfc.yml
+      - .github/workflows/build.yml
+  workflow_dispatch:
+
+jobs:
+  buildRelease:
+    uses: ./.github/workflows/build.wfc.yml
+    with:
+      linuxEnabled: true
+      wasmEnabled: true
+      buildType: Release
+
+  buildDebug:
+    uses: ./.github/workflows/build.wfc.yml
+    with:
+      linuxEnabled: true
+      wasmEnabled: true
+      buildType: Debug

@@ -1,0 +1,14 @@
+{
+    "version": "0.5",
+    "requires": [
+        "spdlog/1.12.0#c5fc262786548cbac34e6c38e16309a9%1688915175.09",
+        "gtest/1.8.1#c8a230fc18e7b5103adc986ccd1f6ba6%1689348346.561",
+        "fmt/10.0.0#dd5e3eb81b512a1bb34a5aab88a07e82%1684225718.04"
+    ],
+    "build_requires": [
+        "nodejs/16.3.0#ecc03e2039d93ec8c6df784f8533c8a2%1682717398.515",
+        "emsdk/3.1.44#a6d941a26a1c416d25e3505805703a58%1691145317.971",
+        "cmake/3.22.6#32cced101c6df0fab43e8d00bd2483eb%1678699428.472"
+    ],
+    "python_requires": []
+}

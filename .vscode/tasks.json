@@ -4,53 +4,58 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Dev Wasm",
-      "type": "shell",
-      "command": "scripts/dev-wasm.sh",
-      "detail": "Build and serve through Nginx"
-    },
-    {
       "label": "Build Wasm",
       "type": "shell",
-      "command": "scripts/build-wasm.sh",
+      "command": "scripts/build.wasm.sh ${input:buildType}",
       "detail": "Build the wasm binary"
     },
     {
       "label": "Build Linux",
       "type": "shell",
-      "command": "scripts/build-linux.sh",
+      "command": "scripts/build.linux.sh ${input:buildType}",
       "detail": "Build a linux binary"
     },
     {
       "label": "Build Windows",
       "type": "shell",
-      "command": "scripts/build-windows.sh",
+      "command": "scripts/build.windows.sh",
       "detail": "Build a Windows binary"
     },
     {
       "label": "Run Linux",
       "type": "shell",
-      "command": "scripts/run-linux.sh",
-      "detail": "Run linux binary"
+      "command": "scripts/run.linux.sh",
+      "detail": "Run linux binary",
+      "args": [
+        "${input:runArgs}"
+      ]
     },
     {
-      "label": "Build & Run Linux",
+      "label": "Run Wasm",
       "type": "shell",
-      "detail": "Build a linux binary",
-      "command": "scripts/build-n-run-linux.sh",
-      "args": ["${input:runArgs}"]
+      "command": "scripts/run.wasm.sh",
+      "detail": "Start python http server"
     },
     {
-      "label": "Start Nginx",
+      "label": "...Run Linux",
       "type": "shell",
-      "command": "scripts/start-nginx.sh",
-      "detail": "Start Nginx server"
+      "detail": "Build and run a linux exec",
+      "command": "scripts/run.linux.sh && scripts/run.linux.sh",
+      "args": [
+        "${input:runArgs}"
+      ]
     },
     {
-      "label": "Stop Nginx",
+      "label": "...Run Wasm",
       "type": "shell",
-      "command": "scripts/stop-nginx.sh",
-      "detail": "Stop Nginx server"
+      "command": "scripts/build.wasm.sh && scripts/run.wasm.sh",
+      "detail": "Start python http server"
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "command": "scripts/clean.sh",
+      "detail": "Clean artifacts and support files"
     }
   ],
   "inputs": [
@@ -59,6 +64,16 @@
       "id": "runArgs",
       "description": "Runtime arguments",
       "default": "arg1 arg2 arg3 arg4 arg5 arg6"
+    },
+    {
+      "type": "pickString",
+      "id": "buildType",
+      "description": "Desired build type",
+      "default": "",
+      "options": [
+        "Release",
+        "Debug"
+      ]
     }
   ]
 }
