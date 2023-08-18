@@ -4,15 +4,12 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/src/**",
-                "~/.conan/data/**"
+                "/home/conan/.conan2/p/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/local/bin/clang",
-            "cStandard": "c17",
-            "intelliSenseMode": "linux-clang-x64",
-            "browse": {
-                "databaseFilename": "${workspaceFolder}/.vscode/workspace.db"
-            }
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c23",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

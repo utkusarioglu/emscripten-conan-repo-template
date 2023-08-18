@@ -6,6 +6,7 @@
   ],
   "service": "emscripten-conan-repo-template",
   "workspaceFolder": "/utkusarioglu/templates/emscripten-conan-repo-template",
+  "postCreateCommand": "scripts/post-create-command.sh",
   "customizations": {
     "vscode": {
       "extensions": [

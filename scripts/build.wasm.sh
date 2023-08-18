@@ -3,4 +3,6 @@
 source ./repo.config
 source scripts/utils.sh
 
-clean $@
+clean 'wasm' $@
+install 'wasm' $@
+build 'wasm' $@

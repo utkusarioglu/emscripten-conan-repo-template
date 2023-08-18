@@ -1,0 +1,72 @@
+name: build
+
+on:
+  workflow_call:
+    inputs:
+      wasmEnabled: 
+        default: true
+        type: boolean
+      linuxEnabled: 
+        default: true
+        type: boolean
+      buildType:
+        required: true
+        type: string
+
+
+jobs:
+  build-workflow:
+    name: build-and-push
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        images:
+          - enabled: ${{ inputs.wasmEnabled }}
+            target: wasm
+            buildPath: emscripten
+          - enabled: ${{ inputs.linuxEnabled }}
+            target: linux
+            buildPath: linux
+
+    steps:
+      - name: Checkout code
+        if: ${{ matrix.images.enabled }}
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      
+      - name: Adjust permissions
+        if: ${{ matrix.images.enabled }}
+        run: |
+          sudo chown -R 1000:1000 .
+          ls -al
+
+      - name: Run devcontainer
+        if: ${{ matrix.images.enabled }}
+        run: |
+          docker compose \
+            -f .docker/docker-compose.ci.yml \
+            -f .docker/docker-compose.dev.yml \
+            up -d
+      
+      - name: Install & Build ${{ matrix.images.target }}
+        if: ${{ matrix.images.enabled }}
+        run: |
+          docker container ls
+          docker exec -t emscripten-conan-repo-template \
+            scripts/build.${{ matrix.images.target }}.sh \
+            ${{ inputs.buildType }}
+      
+      - name: Variables
+        id: variables
+        run: |
+          build_type="${{ inputs.buildType }}"
+          build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
+          echo "build_type=$build_type" >> $GITHUB_OUTPUT
+      
+      - name: Save Bin
+        if: ${{ matrix.images.enabled }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.images.target }}-${{ steps.variables.outputs.build_type }}-bin
+          path: build/${{ matrix.images.buildPath }}/${{ steps.variables.outputs.build_type }}/bin

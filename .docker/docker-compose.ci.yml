@@ -1,0 +1,6 @@
+version: "3.9"
+
+services:
+  emscripten-conan-repo-template:
+    working_dir: /utkusarioglu/templates/emscripten-conan-repo-template
+    command: /bin/sh -c "while sleep 1000; do :; done"
