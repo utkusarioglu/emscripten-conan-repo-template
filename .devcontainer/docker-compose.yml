@@ -6,10 +6,13 @@ services:
     volumes:
       - type: volume
         source: vscode-server-extensions
-        target: /root/.vscode-server/extensions
+        target: /home/conan/.vscode-server/extensions
       - type: volume
         source: vscode-server-insiders-extensions
-        target: /root/.vscode-server-insiders/extensions
+        target: /home/conan/.vscode-server-insiders/extensions
+      - type: volume
+        source: conan2-cache
+        target: /home/conan/.conan2
     command: /bin/sh -c "while sleep 1000; do :; done"
 
 volumes:
@@ -17,3 +20,5 @@ volumes:
     name: emscripten-conan-repo-template-vscode-server-extensions
   vscode-server-insiders-extensions:
     name: emscripten-conan-repo-template-vscode-server-insiders-extensions
+  conan2-cache:
+    name: emscripten-conan-repo-template-conan2-cache

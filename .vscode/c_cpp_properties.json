@@ -4,6 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/src/**",
+                "${workspaceFolder}/test/**",
                 "/home/conan/.conan2/p/**"
             ],
             "defines": [],

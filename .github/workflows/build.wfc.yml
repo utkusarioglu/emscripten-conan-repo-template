@@ -23,7 +23,7 @@ jobs:
         images:
           - enabled: ${{ inputs.wasmEnabled }}
             target: wasm
-            buildPath: emscripten
+            buildPath: wasm
           - enabled: ${{ inputs.linuxEnabled }}
             target: linux
             buildPath: linux

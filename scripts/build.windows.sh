@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./repo.config
+. .repo.config
 . scripts/utils.sh
 
 clean

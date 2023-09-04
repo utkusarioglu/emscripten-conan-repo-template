@@ -14,7 +14,7 @@
         "ms-vscode.cmake-tools",
         "disroop.conan",
         "FireBlackHat.conan-tools",
-        "ahmadalli.vscode-nginx-conf"
+        "akiramiyakoda.cppincludeguard"
       ],
       "settings": {
         "workbench.colorCustomizations": {

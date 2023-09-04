@@ -40,21 +40,18 @@
       "label": "...Run Linux",
       "type": "shell",
       "detail": "Build and run a linux exec",
-      "command": "scripts/run.linux.sh && scripts/run.linux.sh",
-      "args": [
-        "${input:runArgs}"
-      ]
+      "command": "scripts/build.linux.sh ${input:buildType} && scripts/run.linux.sh ${input:runArgs}",
     },
     {
       "label": "...Run Wasm",
       "type": "shell",
-      "command": "scripts/build.wasm.sh && scripts/run.wasm.sh",
+      "command": "scripts/build.wasm.sh ${input:buildType} && scripts/run.wasm.sh",
       "detail": "Start python http server"
     },
     {
       "label": "Clean",
       "type": "shell",
-      "command": "scripts/clean.sh",
+      "command": "scripts/clean.sh ${input:osType} ${input:buildType}",
       "detail": "Clean artifacts and support files"
     }
   ],
@@ -73,6 +70,17 @@
       "options": [
         "Release",
         "Debug"
+      ]
+    },
+    {
+      "type": "pickString",
+      "id": "osType",
+      "description": "Desired os type",
+      "default": "",
+      "options": [
+        "Wasm",
+        "Linux",
+        "Windows"
       ]
     }
   ]

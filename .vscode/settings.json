@@ -11,5 +11,8 @@
       "isAsync": true,
       "command": "gh secret set -f .env"
     },
-  ]
+  ],
+  "C/C++ Include Guard.Prefix": "EMSCRIPTEN_CONAN_REPO_TEMPLATE_",
+  "C/C++ Include Guard.Remove Extension": false,
+  "C/C++ Include Guard.Suffix": "_"
 }

@@ -17,13 +17,10 @@ class Emscripten(ConanFile):
     #     self.options["spdlog"].shared = True
 
     def layout(self):
-        # cmake_layout(self)
-        build_type = str(self.settings.build_type).lower()
-        os = str(self.settings.os).lower()
-
+        build_relpath = self._get_build_path()
         self.folders.source = "."
-        self.folders.build = f"build/{os}/{build_type}"
-        self.folders.generators = f"build/{os}/{build_type}/generators"
+        self.folders.build = build_relpath
+        self.folders.generators = f"{build_relpath}/generators"
         self.cpp.source.includeDirs = ["include"]
         self.cpp.build.libdirs = "."
         self.cpp.build.bindirs = "."
@@ -79,6 +76,18 @@ class Emscripten(ConanFile):
                 target = f"{release_dir}/bin/{self.name}"
                 copy2(source, target)
                 chmod(target, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)
-
             case _:
-                print("Unknown os")
+                raise ValueError(f"Unknown os {self.settings.os}")
+    
+    def _get_build_path(self) -> str:
+        build_type = str(self.settings.build_type).lower()
+        arch_lower = str(self.settings.arch).lower()
+        os_lower = str(self.settings.os).lower()
+
+        match os_lower:
+            case "emscripten":
+                return f"build/{arch_lower}/{build_type}"
+            case "linux":
+                return f"build/{os_lower}/{build_type}"
+            case _:
+                raise ValueError(f"Unknown os {self.settings.os}")

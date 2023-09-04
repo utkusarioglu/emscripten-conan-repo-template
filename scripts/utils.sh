@@ -69,9 +69,10 @@ create() {
 
 
 clean() {
-  os=$1
-  build_type=$2
-  build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
+  os=$(echo $1 | tr '[:upper:]' '[:lower:]')
+  build_type=$(echo $2 | tr '[:upper:]' '[:lower:]')
+  # build_type=$2
+  # build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
 
   required_params='os build_type'
   
@@ -82,8 +83,15 @@ clean() {
     fi
   done
 
+  os_relpath="build/$os"
+  build_type_relpath="$os_relpath/$build_type"
+
   echo "Cleaning '$os/$build_type'…"
-  rm -rf "build/$os/$build_type"
+  rm -rf "$build_type_relpath"
+
+  if [ -n "$(find "$os_relpath" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
+    rm -rf "$os_relpath"
+  fi
 }
 
 test() {
