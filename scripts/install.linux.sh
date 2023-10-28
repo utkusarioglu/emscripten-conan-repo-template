@@ -3,4 +3,5 @@
 source .repo.config
 source scripts/utils.sh
 
-build 'wasm' $@
+clean 'linux' $@
+install 'linux' $@

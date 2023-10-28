@@ -4,55 +4,305 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Install Wasm",
+      "type": "shell",
+      "command": "scripts/install.wasm.sh ${input:buildType}",
+      "detail": "Install wasm build requirements",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "server-process"
+      },
+    },
+    {
       "label": "Build Wasm",
       "type": "shell",
       "command": "scripts/build.wasm.sh ${input:buildType}",
-      "detail": "Build the wasm binary"
+      "detail": "Build the wasm binary",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "server-process"
+      },
+    },
+    {
+      "label": "...Build Wasm",
+      "type": "shell",
+      "command": "scripts/build.wasm.sh ${input:buildType}",
+      "detail": "Install and build the wasm binary",
+      "group": "build",
+      "dependsOn": [
+        "Install Wasm"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "server-process"
+      },
+    },
+    {
+      "label": "Install Linux",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "scripts/install.linux.sh ${input:buildType}",
+      "detail": "Install linux build requirements",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "terminal-linux"
+      },
     },
     {
       "label": "Build Linux",
       "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "command": "scripts/build.linux.sh ${input:buildType}",
-      "detail": "Build a linux binary"
+      "detail": "Build a linux binary",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "terminal-linux"
+      },
+    },
+    {
+      "label": "...Build Linux",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "scripts/build.linux.sh ${input:buildType}",
+      "detail": "Install and build a linux binary",
+      "dependsOn": [
+        "Install Linux"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "terminal-linux"
+      },
+    },
+    {
+      "label": "Install Windows",
+      "type": "shell",
+      "group": "build",
+      "command": "scripts/install.windows.sh",
+      "detail": "Install windows build requirements",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "extensions"
+      },
     },
     {
       "label": "Build Windows",
       "type": "shell",
+      "group": "build",
       "command": "scripts/build.windows.sh",
-      "detail": "Build a Windows binary"
+      "detail": "Build a Windows binary",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "extensions"
+      },
+    },
+    {
+      "label": "...Build Windows",
+      "type": "shell",
+      "group": "build",
+      "command": "scripts/build.windows.sh",
+      "detail": "Install and build a Windows binary",
+      "dependsOn": [
+        "Install Windows"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "extensions"
+      },
     },
     {
       "label": "Run Linux",
+      "group": "none",
       "type": "shell",
       "command": "scripts/run.linux.sh",
       "detail": "Run linux binary",
       "args": [
         "${input:runArgs}"
-      ]
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiBlue",
+        "id": "terminal-linux"
+      },
     },
     {
       "label": "Run Wasm",
+      "group": "none",
       "type": "shell",
       "command": "scripts/run.wasm.sh",
-      "detail": "Start python http server"
+      "detail": "Start python http server",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiBlue",
+        "id": "server-process"
+      },
     },
     {
       "label": "...Run Linux",
+      "group": "build",
       "type": "shell",
       "detail": "Build and run a linux exec",
-      "command": "scripts/build.linux.sh ${input:buildType} && scripts/run.linux.sh ${input:runArgs}",
+      "command": "scripts/run.linux.sh ${input:runArgs}",
+      "dependsOn": [
+        "...Build Linux"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiBlue",
+        "id": "terminal-linux"
+      },
     },
     {
       "label": "...Run Wasm",
+      "group": "build",
       "type": "shell",
       "command": "scripts/build.wasm.sh ${input:buildType} && scripts/run.wasm.sh",
-      "detail": "Start python http server"
+      "detail": "Start python http server",
+      "dependsOn": [
+        "...Build Wasm"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false,
+        "close": false
+      },
+      "icon": {
+        "color": "terminal.ansiCyan",
+        "id": "server-process"
+      },
     },
     {
       "label": "Clean",
+      "group": "none",
       "type": "shell",
       "command": "scripts/clean.sh ${input:osType} ${input:buildType}",
-      "detail": "Clean artifacts and support files"
+      "detail": "Clean artifacts and support files",
+      "presentation": {
+        "close": true
+      },
+      "icon": {
+        "color": "terminal.ansiRed",
+        "id": "clear-all"
+      }
     }
   ],
   "inputs": [

@@ -67,12 +67,10 @@ create() {
     --lockfile conan.lock
 }
 
-
 clean() {
-  os=$(echo $1 | tr '[:upper:]' '[:lower:]')
-  build_type=$(echo $2 | tr '[:upper:]' '[:lower:]')
-  # build_type=$2
-  # build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
+  os=$1
+  build_type=$2
+  build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
 
   required_params='os build_type'
   
@@ -83,28 +81,16 @@ clean() {
     fi
   done
 
-  os_relpath="build/$os"
-  build_type_relpath="$os_relpath/$build_type"
-
   echo "Cleaning '$os/$build_type'…"
-  rm -rf "$build_type_relpath"
-
-  if [ -n "$(find "$os_relpath" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
-    rm -rf "$os_relpath"
-  fi
+  rm -rf "build/$os/$build_type"
 }
 
-test() {
-  target_profile=$1
+run_test() {
+  os=$1
+  build_type=$2
+  build_type=$(echo $build_type | tr '[:upper:]' '[:lower:]')
   
-  if [ -z "$target_profile" ]; then
-    echo "Error: Target profile needs to be the first param"
-    exit 1
-  fi
-
-  conan test \
-    -pr:b $(pwd)/profiles/host.profile \
-    -pr:h $(pwd)/profiles/$target_profile.profile \
-    test_package \
-    emscripten-conan-repo-template/1.0.0
+  TEST_BINARY_BASENAME=cpp-algo-workshop-test
+  
+  build/$os/$build_type/bin/$TEST_BINARY_BASENAME
 }

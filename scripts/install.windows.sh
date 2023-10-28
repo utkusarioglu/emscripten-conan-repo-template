@@ -3,4 +3,5 @@
 . .repo.config
 . scripts/utils.sh
 
-build 'windows'
+build 'windows' $@
+install 'windows'

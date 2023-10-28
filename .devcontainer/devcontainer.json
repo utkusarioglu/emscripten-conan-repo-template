@@ -12,8 +12,6 @@
       "extensions": [
         "ms-vscode.cpptools",
         "ms-vscode.cmake-tools",
-        "disroop.conan",
-        "FireBlackHat.conan-tools",
         "akiramiyakoda.cppincludeguard"
       ],
       "settings": {
